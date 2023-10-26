@@ -62,6 +62,18 @@ function exe()
             game.Players.LocalPlayer:Kick("Blacklist")
             warn("Youre Blacklist From Our Script")
         else
+            local afk = game:GetService("Players").LocalPlayer
+            local index = getrawmetatable(game)
+            local mt = index.__namecall
+            setreadonly(index, false)
+            index.__namecall = newcclosure(function(self, ...)
+                local method = getnamecallmethod()
+                if self == afk and method == "Idled" then
+                    return
+                end
+                return mt(self, ...)
+            end)
+            setreadonly(index, true)
             local games = {
                 [1450425732] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/Scuba%20Diving%20At%20Quill%20Lake.lua",
                 [9759729519] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/all%20of%20us%20are%20dead.lua",
