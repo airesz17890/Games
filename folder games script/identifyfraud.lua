@@ -8,6 +8,7 @@ local window = Library:AddWindow(game:GetService("MarketplaceService"):GetProduc
 local tab1 = window:AddTab("Main")
 local tab2 = window:AddTab("Esp")
 tab1:Show()
+local fly = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/RobloxScripts/main/BypassedFly.lua"))()
 local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
 ESP:Toggle(true)
 ESP.Tracers = false
@@ -78,6 +79,17 @@ tab1:AddSwitch("Noclip", function(v)
             end
         end
     end
+end)
+tab1:AddSwitch("Fly", function(v)
+    fly(v)
+end)
+tab1:AddSwitch("Inf Jump", function(v)
+    getgenv().infjump = v
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if getgenv().infjump then
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+        end
+    end)
 end)
 tab1:AddButton("FullBright", function()
     loadstring(game:HttpGet('https://pastebin.com/raw/06iG6YkU'))()
