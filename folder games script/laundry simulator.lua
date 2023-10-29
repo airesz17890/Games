@@ -119,7 +119,7 @@ tab1:AddButton("Open Shop Gui", function()
     firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.ArchysShopEntrance.Open, 1)
 end)
 tab1:AddButton("Unlock Gamepass", function()
-    for i, v in pairs(game:GetService("Players").carpor178.Gamepasses:GetChildren()) do
+    for i, v in pairs(game:GetService("Players").LocalPlayer.Gamepasses:GetChildren()) do
         if v.ClassName == "BoolValue" and v.Value == false then
             v.Value = true
         end
