@@ -51,25 +51,6 @@ Tabs.Main:AddToggle("Auto Pass", {
         end)
     end
 })
-Tabs.Main:AddToggle("Afk Farm", {
-    Title = "Afk Farm",
-    Default = false,
-    Callback = function(v)
-        getgenv().afkfarm = v
-        while getgenv().afkfarm do
-            wait()
-            if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Lobby.SpawnLocation.Position) * CFrame.new(0, 300, 0)
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-                if not getgenv().afkfarm then
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-                    wait()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Lobby.SpawnLocation.Position) * CFrame.new(0, 2, 0)
-                end
-            end
-        end
-    end
-})
 Tabs.Esp:AddToggle("Enable Esp", {
     Title = "Enable Esp",
     Default = false,
