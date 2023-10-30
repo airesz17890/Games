@@ -16,6 +16,7 @@ ESP.Tracers = false
 ESP.Names = false
 ESP.Boxes = false
 ESP.Players = false
+ESP.Color = Color3.fromRGB(255, 255, 255)
 local Window = Fluent:CreateWindow({
     Title = tostring(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name),
     SubTitle = "",
@@ -81,15 +82,16 @@ local Tabs = {
     })
 }
 ---main
-Tabs.Main:AddDropdown("SelectTool Dropdown", {
+local tool = Tabs.Main:AddDropdown("SelectTool Dropdown", {
     Title = "Select Tool",
     Values = {"Weight", "Situps", "Pushups", "Handstands"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectool = v
     end
 })
+tool:SetValue("Weight")
 Tabs.Main:AddToggle("Autofarm Tool Toggle", {
     Title = "Auto Farm",
     Default = false,
@@ -254,16 +256,17 @@ Tabs.Main:AddButton({
     end
 })
 -- rock
-Tabs.Rock:AddDropdown("Rock Dropdown", {
+local rock = Tabs.Rock:AddDropdown("Rock Dropdown", {
     Title = "Select Rock",
     Values = {"Tiny Island Rock", "Starter Island Rock", "Legend Beach Rock", "Frost Gym Rock", "Mythical Gym Rock",
         "Eternal Gym Rock", "Legend Gym Rock", "Muscle King Gym Rock"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectrock = v
     end
 })
+rock:SetValue("Tiny Island Rock")
 function gettool()
     for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
         if v.Name == "Punch" and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
@@ -425,15 +428,16 @@ Tabs.Rock:AddToggle("Farm Rock Toggle", {
     end
 })
 -- deadlift
-Tabs.Lift:AddDropdown("Lift Dropdown", {
+local deadlift = Tabs.Lift:AddDropdown("Lift Dropdown", {
     Title = "Select Dead Lift",
     Values = {"Starter Island", "Legend Beach", "Frost Gym", "Legend Gym", "Muscle King Gym"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectlift = v
     end
 })
+deadlift:SetValue("Starter Island")
 function getgui()
     for i, v in pairs(game.Players.LocalPlayer.PlayerGui:GetChildren()) do
         if v.Name == "machineGui" and v.Enabled == true then
@@ -519,16 +523,17 @@ Tabs.Lift:AddToggle("Deadlift Toggle", {
     end
 })
 -- squat rack
-Tabs.Squat:AddDropdown("Squatrack dropdown", {
+local squat = Tabs.Squat:AddDropdown("Squatrack dropdown", {
     Title = "Select Squat Rack",
     Values = {"Starter Island", "Legend Beach", "Frost Gym", "Legend Gym", "Muscle King Gym"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectsquat = v
     end
 })
-local squattoggle = Tabs.Squat:AddToggle("Squatrack Toggle", {
+squat:SetValue("Starter Island")
+Tabs.Squat:AddToggle("Squatrack Toggle", {
     Title = "Farm Squatrack",
     Default = false,
     Callback = function(v)
@@ -603,7 +608,7 @@ local squattoggle = Tabs.Squat:AddToggle("Squatrack Toggle", {
     end
 })
 -- bench press
-Tabs.Bench:AddDropdown("Benchpress dropdown", {
+local bench = Tabs.Bench:AddDropdown("Benchpress dropdown", {
     Title = "Select Bench Press",
     Values = {"Starter Island", "Legend Beach", "Frost Gym", "Mythical Gym", "Eternal Gym", "Legend Gym",
         "Muscle King Gym"},
@@ -613,7 +618,8 @@ Tabs.Bench:AddDropdown("Benchpress dropdown", {
         selectbench = v
     end
 })
-local benchtoggle = Tabs.Bench:AddToggle("BenchPress Toggle", {
+bench:SetValue("Starter Island")
+Tabs.Bench:AddToggle("BenchPress Toggle", {
     Title = "Farm BenchPress",
     Default = false,
     Callback = function(v)
@@ -714,16 +720,17 @@ local benchtoggle = Tabs.Bench:AddToggle("BenchPress Toggle", {
     end
 })
 -- pullup
-Tabs.Pull:AddDropdown("Pullup dropdown", {
+local pullup = Tabs.Pull:AddDropdown("Pullup dropdown", {
     Title = "Select Pull Up",
     Values = {"Starter Island", "Mythical Gym", "Legend Gym"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectpullup = v
     end
 })
-local pulltoggle = Tabs.Pull:AddToggle("pullupPress Toggle", {
+pullup:SetValue("Starter Island")
+Tabs.Pull:AddToggle("pullupPress Toggle", {
     Title = "Farm Pull Up",
     Default = false,
     Callback = function(v)
@@ -772,16 +779,17 @@ local pulltoggle = Tabs.Pull:AddToggle("pullupPress Toggle", {
         end
     end
 })
-Tabs.Throw:AddDropdown("Throw dropdown", {
+local throw = Tabs.Throw:AddDropdown("Throw dropdown", {
     Title = "Select Boulder Throw",
     Values = {"Legend Beach", "Mythical Gym", "Legend Gym", "Muscle King Gym"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectthrow = v
     end
 })
-local throwtoggle = Tabs.Throw:AddToggle("Throw Toggle", {
+throw:SetValue("Legend Beach")
+Tabs.Throw:AddToggle("Throw Toggle", {
     Title = "Farm Boulder Throw",
     Default = false,
     Callback = function(v)
@@ -844,16 +852,17 @@ local throwtoggle = Tabs.Throw:AddToggle("Throw Toggle", {
     end
 })
 -- treadmill
-Tabs.Tread:AddDropdown("Tread Dropdown", {
+local tread = Tabs.Tread:AddDropdown("Tread Dropdown", {
     Title = "Select Tread Mill",
     Values = {"Tiny Island", "Starter Island", "Legend Beach", "Frost Gym", "Mythical Gym", "Eternal Gym",
         "Legend Gym"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selecttreadmill = v
     end
 })
+tread:SetValue("Tiny Island")
 Tabs.Tread:AddToggle("Tread Toggle", {
     Title = "Farm Tread Mill",
     Default = false,
@@ -936,16 +945,17 @@ Tabs.Tread:AddToggle("Tread Toggle", {
         end)
     end
 })
-Tabs.Teleport:AddDropdown("Teleport Dropdown", {
+local teleport = Tabs.Teleport:AddDropdown("Teleport Dropdown", {
     Title = "Select Island",
     Values = {"Tiny Island", "Starter Island", "Legend Beach", "Frost Gym", "Mythical Gym", "Eternal Gym",
         "Legend Gym", "Muscle King Gym"},
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectteleport = v
     end
 })
+teleport:SetValue("Tiny Island")
 Tabs.Teleport:AddButton({
     Title = "Teleport Selected Island",
     Callback = function()
@@ -988,15 +998,16 @@ local thl = {}
 for i, v in pairs(game:GetService("Workspace").mapCrystalsFolder:GetChildren()) do
     thl[i] = v.Name
 end
-Tabs.Shop:AddDropdown("Shop Dropdown", {
+local shop = Tabs.Shop:AddDropdown("Shop Dropdown", {
     Title = "Select Crystal",
     Values = thl,
     Multi = false,
-    Default = 1,
+    Default = "",
     Callback = function(v)
         selectcrystal = v
     end
 })
+shop:SetValue(thl[1])
 Tabs.Shop:AddToggle("Crystal Togle", {
     Title = "Buy Crystal",
     Default = false,
@@ -1009,31 +1020,38 @@ Tabs.Shop:AddToggle("Crystal Togle", {
     end
 })
 Tabs.Esp:AddToggle("Enable Esp", {
-    Title = "Toggle",
+    Title = "Enable Esp",
     Default = false,
     Callback = function(v)
         ESP.Players = v
     end
 })
 Tabs.Esp:AddToggle("Player Name", {
-    Title = "Toggle",
+    Title = "Player Name",
     Default = false,
     Callback = function(v)
         ESP.Names = v
     end
 })
 Tabs.Esp:AddToggle("Player Boxes", {
-    Title = "Toggle",
+    Title = "Player Boxes",
     Default = false,
     Callback = function(v)
         ESP.Boxes = v
     end
 })
 Tabs.Esp:AddToggle("Player Tracer", {
-    Title = "Toggle",
+    Title = "Player Tracers",
     Default = false,
     Callback = function(v)
         ESP.Tracers = v
+    end
+})
+Tabs.Esp:AddColorpicker("Colorpicker", {
+    Title = "Esp Color",
+    Default = Color3.fromRGB(255, 255, 255),
+    Callback = function(v)
+        ESP.Color = v
     end
 })
 function getool()
