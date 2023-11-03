@@ -38,7 +38,7 @@ function getexploithwid()
         Method = "GET"
     }).Body)
     local Hwid
-    for _, v in ipairs({"Krnl-Fingerprint", "Syn-Fingerprint", "SW-Fingerprint", "Flux-Fingerprint", "Oxy-Fingerprint", "Hydrogen-Fingerprint", "Delta-Fingerprint", "Electron-Fingerprint", "Kiwi-Fingerprint", "Vega-Fingerprint", "Valyse-Fingerprint", "Evon-Fingerprint", "Trigon-Fingerprint", "Articx-Fingerprint"}) do
+    for _, v in ipairs({"Krnl-Fingerprint", "Syn-Fingerprint", "SW-Fingerprint", "Flux-Fingerprint", "Oxy-Fingerprint", "Hydrogen-Fingerprint", "Delta-Fingerprint", "Electron-Fingerprint", "Kiwi-Fingerprint", "Vega-Fingerprint", "Valyse-Fingerprint", "Evon-Fingerprint", "Trigon-Fingerprint", "Articx-Fingerprint", "Sirhut-Fingerprint"}) do
         if Body.headers[v] then
             Hwid = Body.headers[v]
         end
