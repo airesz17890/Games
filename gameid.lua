@@ -29,7 +29,8 @@ local games = {
     [1962086868] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/tower%20of%20hell.lua",
     [338521019] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/identifyfraud.lua",
     [5736409216] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/mall%20tycoon.lua",
-    [5104202731] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/southwest.lua"
+    [5104202731] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/southwest.lua",
+    [13924946576] = "https://raw.githubusercontent.com/airesz17890/Games/main/folder%20games%20script/dingus.lua"
 }
 if games[game.PlaceId] then
     return loadstring(game:HttpGet(games[game.PlaceId]))()
